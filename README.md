@@ -29,6 +29,8 @@ There should be provision to commit each version of data, again like Git. This h
 
 Local devs should be able to create their own **branches** of data and create PR against the master data for valid new test cases.
 
+### Not a new DB, just an add-on
+The tool should just be an add-on to latch onto your existing database, and not an entirely new database altogether. Just like [Git](https://git-scm.com/) works with any programming language or platform, this version-controller tool should work with any DB (SQL or NoSQL).
 
 
 ## 🤔 Use Cases
