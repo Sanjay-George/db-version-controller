@@ -1,17 +1,20 @@
-# DB Version Controller
+# 🎛️ DB Version Controller
 Idea and design for an application to version control databases like MySQL, MongoDB, etc.
 
-## Background 
+## 💡 Motivation 
 
 ### Why version control your data?
 https://blog.codinghorror.com/get-your-database-under-version-control/
 
 
 
-## State of the art
+## ⚒️ Existing tools
+[Dolt - A version controlled DB](https://docs.dolthub.com/introduction/what-is-dolt)
+
+[Tools listed by Leon Babmrick](https://secretgeek.net/dbcontrol)
 
 
-## Requirements
+## 📝 Requirements
 
 ### Share data across machines of developers
 There should be a provision for developers to share data from tables or databases to others. This easily sets up development data on a new devs' machine.
@@ -28,9 +31,9 @@ Local devs should be able to create their own **branches** of data and create PR
 
 
 
-## Scenarios and usefulness
+## 🤔 Use Cases
 
-### Scenario 1: small teams and personal projects
+### Scenario 1: Sharing data on dev environment
 Consider Bob 🧔 and Alice 👧 are devs working on the next big thing. They need a simple process to share good test cases among each other. 
 
 **Potential solutions and underlying problems**
@@ -39,6 +42,10 @@ Consider Bob 🧔 and Alice 👧 are devs working on the next big thing. They ne
 1. Overhead in creating those queries.
 2. IDs may vary between them, if auto-incremented IDs are used. In case of doc DBs like MongoDB, the ObjectIDs / UUIDs will differ. There are cases where having same IDs is necessary for coordination, especially with small teams.
 
-* **Use a common DB server (cloud or local)**
+* **Use a common DB server (cloud or local network)**
 1. Overhead in setting up server.
 2. They could end up destroying each other's data
+
+
+### Scenario 2: Syncing data across environments (dev, staging, prod)
+TBD..
