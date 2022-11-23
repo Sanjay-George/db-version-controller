@@ -36,18 +36,19 @@ The tool should just be an add-on to latch onto your existing database, and not 
 ## 🤔 Use Cases
 
 ### Scenario 1: Sharing data on dev environment
-Consider Bob 🧔 and Alice 👧 are devs working on the next big thing. They need a simple process to share good test cases among each other. 
+Consider Bobby 🧔 and A lice 🐛 are devs working on the next big thing. They need a simple process to share good test cases among each other.
 
 **Potential solutions and underlying problems**
 
 * **Send queries for DDL and DML to each other.**
 1. Overhead in creating those queries.
-2. IDs may vary between them, if auto-incremented IDs are used. In case of doc DBs like MongoDB, the ObjectIDs / UUIDs will differ. There are cases where having same IDs is necessary for coordination, especially with small teams.
+2. IDs may vary between them, especially if auto-incremented IDs are used. In case of doc DBs like MongoDB, the ObjectIDs / UUIDs will differ. There are cases where having same IDs is necessary for coordination (enumerations, for example).
 
 * **Use a common DB server (cloud or local network)**
 1. Overhead in setting up server.
-2. They could end up destroying each other's data
+2. They could end up polluting each other's data
 
+Neither of the solutions provide a way to revert to an earlier version of the DB (unless you take manual backups or log schema changes, which are hectic for small teams).  
 
 ### Scenario 2: Syncing data across environments (dev, staging, prod)
 TBD..
