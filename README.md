@@ -53,4 +53,7 @@ Consider Bobby 🧔 and A lice 🐛 are devs working on the next big thing. They
 Neither of the solutions provide a way to revert to an earlier version of the DB (unless you take manual backups or log schema changes, which are hectic for small teams).  
 
 ### Scenario 2: Syncing data across environments (dev, staging, prod)
-TBD..
+This is not just one scenario, but a set of scenarios:
+1. Since dev data gets polluted quite quickly, staging data will need to be synced to dev periodically. Or a stable version of dev data will have to be restored.
+2. Staging data needs to be updated at regular intervals to enable E2E tests and other forms of acceptance testing.
+3. In some cases, data from staging / local might need to be updated on prod. (Consider enums or DDL statements).
