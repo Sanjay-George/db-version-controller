@@ -57,3 +57,16 @@ This is not just one scenario, but a set of scenarios:
 1. Since dev data gets polluted quite quickly, staging data will need to be synced to dev periodically. Or a stable version of dev data will have to be restored.
 2. Staging data needs to be updated at regular intervals to enable E2E tests and other forms of acceptance testing.
 3. In some cases, data from staging / local might need to be updated on prod. (Consider enums or DDL statements).
+
+Let's consider potential solutions and its downsides one by one:
+
+* **Sync data from staging to dev by destroying all tables and recreating them**
+This would entail having to maintain all DDL statements and DML for the appropriate test cases. An automated pipeline should take care of this, since manual efforts could lead to major mistakes. However, there are downsides to this approach:
+1. Dev data would be replaced entirely by staging data. This means that developers who had created new data points for a new feature will have to spend time recreating them.
+2. Syncing needs to be automated. Also needs to be error-proof.
+
+* **Syncing staging data from previous backup and a list of new queries**
+One way to sync staging data is to recreate everything from the latest backup or checkpoint, and then run new DDL, DML commands on top of them. This has downsides as well:
+1. Developers will need to maintain the new DDL and DML statements. (error-prone)
+2. Some sort of automation pipeline will need to be built for this.
+
