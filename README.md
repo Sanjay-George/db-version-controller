@@ -3,7 +3,6 @@ Idea and design for an application to version control databases like MySQL, Mong
 
 ## 💡 Motivation and Background study 
 * Why version control your database: https://blog.codinghorror.com/get-your-database-under-version-control/
-
 * DB version control and existing tools: https://www.dolthub.com/blog/2021-09-17-database-version-control/
 
 ### Data Structures
@@ -13,9 +12,7 @@ Idea and design for an application to version control databases like MySQL, Mong
 
 ### ⚒️ Existing tools
 * [Dolt - A version controlled DB](https://docs.dolthub.com/introduction/what-is-dolt)
-
 * [Tools listed by Leon Babmrick](https://secretgeek.net/dbcontrol)
-
 * [DBMS Tools - DB Version control tools](https://dbmstools.com/categories/version-control-tools)
 
 
