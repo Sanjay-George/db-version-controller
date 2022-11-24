@@ -1,5 +1,5 @@
 # 🎛️ DB Version Controller
-Idea and design for an application to version control databases like MySQL, MongoDB, etc. Basically a Git for your DB.
+Idea and design for an application to version control databases like MySQL, MongoDB, etc. Basically a git-like add-on to version-control your DB 
 
 ## 💡 Motivation and Background study 
 * Why version control your database: https://blog.codinghorror.com/get-your-database-under-version-control/
