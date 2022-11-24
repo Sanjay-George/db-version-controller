@@ -1,4 +1,4 @@
-# 🎛️ DB Version Controller
+# 💽 DB Version Controller
 Idea and design for an application to version control databases like MySQL, MongoDB, etc. Basically a git-like add-on to version-control your DB 
 
 ## 💡 Motivation and Background study 
