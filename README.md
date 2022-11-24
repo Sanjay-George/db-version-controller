@@ -1,17 +1,19 @@
 # 🎛️ DB Version Controller
-Idea and design for an application to version control databases like MySQL, MongoDB, etc.
+Idea and design for an application to version control databases like MySQL, MongoDB, etc. Basically a Git for your DB.
 
-## 💡 Motivation 
+## 💡 Motivation and Background study 
+* Why version control your database: https://blog.codinghorror.com/get-your-database-under-version-control/
 
-### Why version control your data?
-https://blog.codinghorror.com/get-your-database-under-version-control/
+* DB version control and existing tools: https://www.dolthub.com/blog/2021-09-17-database-version-control/
 
+* Prolly trees in Dolt: https://www.dolthub.com/blog/2020-04-01-how-dolt-stores-table-data/
 
+### ⚒️ Existing tools
+* [Dolt - A version controlled DB](https://docs.dolthub.com/introduction/what-is-dolt)
 
-## ⚒️ Existing tools
-[Dolt - A version controlled DB](https://docs.dolthub.com/introduction/what-is-dolt)
+* [Tools listed by Leon Babmrick](https://secretgeek.net/dbcontrol)
 
-[Tools listed by Leon Babmrick](https://secretgeek.net/dbcontrol)
+* [DBMS Tools - DB Version control tools](https://dbmstools.com/categories/version-control-tools)
 
 
 ## 📝 Requirements
