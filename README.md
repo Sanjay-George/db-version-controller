@@ -6,7 +6,10 @@ Idea and design for an application to version control databases like MySQL, Mong
 
 * DB version control and existing tools: https://www.dolthub.com/blog/2021-09-17-database-version-control/
 
-* Prolly trees in Dolt: https://www.dolthub.com/blog/2020-04-01-how-dolt-stores-table-data/
+### Data Structures
+* Prolly trees (Dolt blog): https://www.dolthub.com/blog/2020-04-01-how-dolt-stores-table-data/
+* Merkle trees
+* B-Tree
 
 ### ⚒️ Existing tools
 * [Dolt - A version controlled DB](https://docs.dolthub.com/introduction/what-is-dolt)
