@@ -46,14 +46,14 @@ The tool should just be an add-on to latch onto your existing database, and not 
 4. **Sync files:** Folder containing human readable `.sql` or other type of files. This will be created by the application and is the folder that needs to be version controlled with Git.  
 
 ### Basic flow
-Consider Bobby 🧔 and A lice 🐛 are developers trying to share their local data with each other. They use MySQL.
+Consider Bobby 🧔 and Alessandra-Maria-Chekhova 👧 are developers trying to share their local data with each other. They use MySQL.
 
 * Bobby creates a few tables, defining the schema, and adds basic data. He runs the `App` by pointing to the `DB data folder`, let's assume `/var/lib/mysql`.
 * The `App` creates human-readable `.sql` files. One folder per database, and one file per table. 
 * The folder created by the `App` is version controlled by Bobby (using `git init` command) and pushed to a **private** repo.
-* The folder is pulled by A lice from the repo and is run through the `App`. 
-* The `App` generates the `.ibd` and `.frm` files required for MySQL, which A lice copies to `var/lib/mysql`
-* A lice now has the exact same copy of Bobby's database.
+* The folder is pulled by Alessandra-Maria-Chekhova from the repo and is run through the `App`. 
+* The `App` generates the `.ibd` and `.frm` files required for MySQL, which Alessandra-Maria-Chekhova copies to `var/lib/mysql`
+* Alessandra-Maria-Chekhova now has the exact same copy of Bobby's database.
 
 ### Merge conflicts
 Assume Bobby changed some data and wants to merge into master. 
