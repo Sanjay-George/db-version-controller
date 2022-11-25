@@ -35,9 +35,57 @@ Local devs should be able to create their own **branches** of data and create PR
 The tool should just be an add-on to latch onto your existing database, and not an entirely new database altogether. Just like [Git](https://git-scm.com/) works with any programming language or platform, this version-controller tool should work with any DB (SQL or NoSQL).
 
 
-## 🤔 Use Cases
+## 🎨 High level Design
 
-### Scenario 1: Sharing data on dev environment
+![db-version-control](https://user-images.githubusercontent.com/10389062/204053829-d98d994b-b775-4c90-ac3b-472ab338b522.png)
+
+### Components
+1. **App:** This will be responsible for converting encrypted / encoded database files to text files containing DDL / DML statements and vice-versa. Human readable text files will be essential for version control. The app will also serve as a UI to resolve merge conflicts (similar to kdiff).
+2. **DB Server:** MongoDB / MySQL / any other DB.
+3. **DB data folder:** The path on disk where the DB stores its files and data. This depends on the database and OS used. 
+4. **Sync files:** Folder containing human readable `.sql` or other type of files. This will be created by the application and is the folder that needs to be version controlled with Git.  
+
+### Basic flow
+Consider Bobby 🧔 and A lice 🐛 are developers trying to share their local data with each other. They use MySQL.
+
+* Bobby creates a few tables, defining the schema, and adds basic data. He runs the `App` by pointing to the `DB data folder`, let's assume `/var/lib/mysql`.
+* The `App` creates human-readable `.sql` files. One folder per database, and one file per table. 
+* The folder created by the `App` is version controlled by Bobby (using `git init` command) and pushed to a **private** repo.
+* The folder is pulled by A lice from the repo and is run through the `App`. 
+* The `App` generates the `.ibd` and `.frm` files required for MySQL, which A lice copies to `var/lib/mysql`
+* A lice now has the exact same copy of Bobby's database.
+
+### Merge conflicts
+Assume Bobby changed some data and wants to merge into master. 
+
+* Bobby pulls the latest master
+* He runs the `App` and points to the folder containing `sync files`. 
+* The `App` shows conflicts between the changes on his machine at `/var/lib/mysql` and the master branch.
+* Bobby chooses how to resolve the conflict using the UI of the `App`.
+* Once resolved, he chooses to save the changes, which will modify the text files at the `Sync folder`.
+* Git will now detect changes in the files corresponding to the tables that Bobby modified, and these changes can be commited and merged to master (create a PR first, ofc).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ## 🤔 Use Cases -->
+
+<!-- ### Scenario 1: Sharing data on dev environment
 Consider Bobby 🧔 and A lice 🐛 are devs working on the next big thing. They need a simple process to share good test cases among each other.
 
 **Potential solutions and underlying problems**
@@ -71,4 +119,4 @@ This would entail having to maintain all DDL statements and DML for the appropri
 One way to sync staging data is to recreate everything from the latest backup or checkpoint, and then run new DDL, DML commands on top of them. This has downsides as well:
 1. Developers will need to maintain the new DDL and DML statements. (error-prone)
 2. Some sort of automation pipeline will need to be built for this.
-
+ -->
