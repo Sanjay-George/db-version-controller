@@ -21,7 +21,7 @@ Idea and design for an application to version control databases like MySQL, Mong
 ### Share data across machines of developers
 There should be a provision for developers to share data from tables or databases to others. This easily sets up development data on a new devs' machine.
 
-### Merge data across machines
+### Merge data across machines and environments
 There should be a provision to merge data from one machine to another, just like with Git. This involves having to **resolve conflicts** (ID conflicts) and sometimes **cherry-picking** which data to merge and what to ignore.
 
 This could ease the process of updating staging or testing environment with new valid test cases from local. Commonly followed approach for this is to maintain a list of queries and automatically run the queries on staging env. Or the QA team manually adds data on staging. Too much work!
