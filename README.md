@@ -36,31 +36,27 @@ The tool should just be an add-on to latch onto your existing database, and not 
 
 
 ## 🎨 High level Design
-
 ![db-version-control](https://user-images.githubusercontent.com/10389062/204053829-d98d994b-b775-4c90-ac3b-472ab338b522.png)
 
 ### Components
-1. **App:** This will be responsible for converting encrypted / encoded database files to text files containing DDL / DML statements and vice-versa. Human readable text files will be essential for version control. The app will also serve as a UI to resolve merge conflicts (similar to kdiff).
-2. **DB Server:** MongoDB / MySQL / any other DB.
-3. **DB data folder:** The path on disk where the DB stores its files and data. This depends on the database and OS used. 
-4. **Sync files:** Folder containing human readable `.sql` or other type of files. This will be created by the application and is the folder that needs to be version controlled with Git.  
+1. **App:** This will be the main client application for version control (kind of like GitHub Desktop). It will be responsible for converting the encoded database files to text files containing DDL & DML statements and vice-versa. Human readable text files will be essential for version control. The app will also serve as a tool to resolve merge conflicts (similar to [kdiff3](https://kdiff3.sourceforge.net/)).
+2. **DB Server:** An image of the database that is used by the develoepers (eg: MySQL, MongoDB, etc.)
+3. **DB data folder:** The folder on local disk where the DB stores its data files. This depends on the database and OS used. These files are usually encoded in certain formats. 
+4. **Version Control folder:** Folder containing human-readable `.sql` files (or different extensions for other DBs). This will be created by the application and is the folder that needs to be version controlled with Git. These contain all DDL and DML statements required to recreate the database on any machine or environment   
 
 ### Basic flow
 Consider Bobby 🧔 and Alessandra-Maria-Chekhova 👧 are developers trying to share their local data with each other. They use MySQL.
 
-* Bobby creates a few tables, defining the schema, and adds basic data. He runs the `App` by pointing to the `DB data folder`, let's assume `/var/lib/mysql`.
-* The `App` creates human-readable `.sql` files. One folder per database, and one file per table. 
-* The folder created by the `App` is version controlled by Bobby (using `git init` command) and pushed to a **private** repo.
-* The folder is pulled by Alessandra-Maria-Chekhova from the repo and is run through the `App`. 
-* The `App` generates the `.ibd` and `.frm` files required for MySQL, which Alessandra-Maria-Chekhova copies to `var/lib/mysql`
-* Alessandra-Maria-Chekhova now has the exact same copy of Bobby's database.
+* Bobby 🧔 creates a few tables, defining the schema, and adds basic data. 
+* He runs the `App` by [mounting](https://docs.docker.com/storage/bind-mounts/) `DB data folder`, and the `Version Control folder`. Let's assume `/var/lib/mysql/` is the `DB data folder` and `Version Control folder` is inside the folder of the developer's application `/path-to-your-cool-app/db/`.
+* The `App` creates human-readable `.sql` files in `Version Control folder`. One folder per database, and one file per table. 
+* The `Version Control folder` is version-controlled by Bobby 🧔 (using Git) and pushed to a **private** repo.
+* The folder is pulled by Alessandra-Maria-C 👧 from the repo and is mounted onto the `App`. 
+* The `App` generates the `.ibd` and `.frm` files required for MySQL to the `DB data folder` on her machine, which could be at `var/lib/mysql/`. (this has to be mounted as well).
+* Alessandra-why-did-i-choose-a-long-name👧 now has the exact same copy of Bobby's 🧔 database.
 
-### Merge conflicts
-Assume Bobby changed some data and wants to merge into master. 
+At any point, the `App` will have mounted 2 folders, `Version Control folder` and `DB data folder`. The former will contain incoming changes and the latter will have the local changes. 
 
-* Bobby pulls the latest master
-* He runs the `App` and points to the folder containing `sync files`. 
-* The `App` shows conflicts between the changes on his machine at `/var/lib/mysql` and the master branch.
-* Bobby chooses how to resolve the conflict using the UI of the `App`.
-* Once resolved, he chooses to save the changes, which will modify the text files at the `Sync folder`.
-* Git will now detect changes in the files corresponding to the tables that Bobby modified, and these changes can be commited and merged to master (create a PR first, ofc).
+Merging changes, conflict resolution, decoding and encoding data are all handled by the `App`.
+
+That's the idea. Do let me know if you foresee some flaws...
